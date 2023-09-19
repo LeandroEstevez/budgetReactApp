@@ -27,24 +27,6 @@ jobs:
           replace-with: '-'
           flags: 'g'
 
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.EB_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.EB_SECRET_ACCESS_KEY_ID }}
-          aws-region: "us-east-2"
-
-      - name: Upload package to S3 bucket
-        run: aws s3 cp deploy.zip s3://elasticbeanstalk-us-east-2-807602152072/
-
-      - name: Create new ElasticBeanstalk Application Version
-        run: |
-          aws elasticbeanstalk create-application-version \
-          --application-name budgetreactapp \
-          --source-bundle S3Bucket="elasticbeanstalk-us-east-2-807602152072",S3Key="deploy.zip" \
-          --version-label "ver-${{ github.sha }}" \
-          --description "commit-sha-${{ github.sha }}"
-
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v21
         with:
