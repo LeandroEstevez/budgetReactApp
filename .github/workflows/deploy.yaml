@@ -21,7 +21,6 @@ jobs:
         uses: frabert/replace-string-action@master
         id: format-time
         with:
-          # replaces '[:\.]+' in the timestamp with '-'
           pattern: '[:\.]+'
           string: "${{ steps.current-time.outputs.time }}"
           replace-with: '-'
@@ -33,8 +32,8 @@ jobs:
           #  input the credentials you used to setup AWS CLI and credentials for the application environment
           aws_access_key: "${{ secrets.EB_ACCESS_KEY_ID }}"
           aws_secret_key: "${{ secrets.EB_SECRET_ACCESS_KEY_ID }}"
-          application_name: budgetreactapp2
-          environment_name: budgetreactapp2-dev
+          application_name: budgetreactapp
+          environment_name: Budgetreactapp-env
           version_label: "app-${{ steps.format-time.outputs.replaced }}"
           region: us-west-2
           deployment_package: deploy.zip
