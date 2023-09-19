@@ -19,7 +19,7 @@ jobs:
             aws_access_key: ${{ secrets.EB_ACCESS_KEY_ID }}
             aws_secret_key: ${{ secrets.EB_SECRET_ACCESS_KEY_ID }}
             application_name: budgetreactapp
-            environment_name: Budgetreactapp-env
+            environment_name: Budgetreactapp-env-1
             version_label: ${{ github.sha }}
             existing_bucket_name: elasticbeanstalk-us-east-2-807602152072
             region: us-east-2
